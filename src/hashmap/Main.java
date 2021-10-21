@@ -1,7 +1,5 @@
 package hashmap;
 
-import java.util.*;
-
 public class Main {
     public static void main(String[] args) {
         MyHashMap<Integer, String> myMap = new MyHashMap<>();
