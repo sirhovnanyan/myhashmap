@@ -44,10 +44,9 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
 
     @Override
     public boolean containsValue(Object value) {
-        Entry<K, V>[] temp = buckets;
         V val;
-        if (temp != null && size > 0) {
-            for (Entry<K, V> ent : temp) {
+        if (buckets != null && size > 0) {
+            for (Entry<K, V> ent : buckets) {
                 while(ent!=null) {
                     if ((val = ent.value) == value || (value != null && value.equals(val))) {
                         return true;
