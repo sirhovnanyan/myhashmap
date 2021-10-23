@@ -33,8 +33,11 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     public boolean containsKey(K key) {
         int index = indexHash(key);
         Entry<K, V> entry = buckets[index];
-            if (entry != null && entry.getKey().equals(key)) {
+        while(entry!=null) {
+            if (entry.getKey().equals(key)) {
                 return true;
+            }
+            entry=entry.next();
         }
         return false;
     }
