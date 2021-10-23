@@ -47,11 +47,11 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         V val;
         if (buckets != null && size > 0) {
             for (Entry<K, V> ent : buckets) {
-                while(ent!=null) {
+                while (ent != null) {
                     if ((val = ent.value) == value || (value != null && value.equals(val))) {
                         return true;
                     }
-                    ent=ent.next();
+                    ent = ent.next();
                 }
             }
         }
