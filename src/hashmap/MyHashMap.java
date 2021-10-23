@@ -33,10 +33,8 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     public boolean containsKey(K key) {
         int index = indexHash(key);
         Entry<K, V> entry = buckets[index];
-        while (entry != null) {
-            if (entry.getKey().equals(key)) {
+            if (entry != null && entry.getKey().equals(key)) {
                 return true;
-            }
         }
         return false;
     }
@@ -51,7 +49,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
                 value = entry.getValue();
                 break;
             }
-            entry = entry.getNext();
+            entry = entry.next();
         }
         return value;
     }
@@ -72,7 +70,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
                     break;
                 }
                 prevNode = currNode;
-                currNode = currNode.getNext();
+                currNode = currNode.next();
             }
             if (prevNode != null) {
                 prevNode.setNext(newEntry);
@@ -90,18 +88,18 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         while (removedEntry != null) {
             if (removedEntry.getKey().equals(key)) {
                 if (prev == null) {
-                    removedEntry = removedEntry.getNext();
+                    removedEntry = removedEntry.next();
                     buckets[index] = removedEntry;
                     size--;
                     return true;
                 } else {
-                    prev.setNext(removedEntry.getNext());
+                    prev.setNext(removedEntry.next());
                     size--;
                     return true;
                 }
             }
             prev = removedEntry;
-            removedEntry = removedEntry.getNext();
+            removedEntry = removedEntry.next();
         }
         return false;
     }
@@ -112,7 +110,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
                 Entry<K, V> currentNode = buckets[i];
                 while (currentNode != null) {
                     System.out.print(currentNode.getKey() + " - " + currentNode.getValue() + "  ");
-                    currentNode = currentNode.getNext();
+                    currentNode = currentNode.next();
                 }
             }
         }
@@ -137,7 +135,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
             return value;
         }
 
-        public Entry<K, V> getNext() {
+        public Entry<K, V> next() {
             return next;
         }
 
