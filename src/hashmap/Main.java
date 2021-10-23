@@ -14,7 +14,8 @@ public class Main {
         myMap.remove(1);
             System.out.println(myMap.size());
             System.out.println(myMap.isEmpty());
-             System.out.print("MyMap is: ");
+            System.out.println("Is the value 'Hello' present? "+myMap.containsValue("Hello"));
+            System.out.print("MyMap is: ");
         myMap.display();
     }
 }

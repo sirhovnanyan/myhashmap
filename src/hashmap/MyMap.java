@@ -8,6 +8,8 @@ public interface MyMap<K, V> {
 
     boolean containsKey(K key);
 
+    boolean containsValue(Object value);
+
     V get(Object key);
 
     V put(K key, V value);
