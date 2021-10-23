@@ -8,6 +8,7 @@ public class Main {
         myMap.put(2, "Hello");
         myMap.put(9, "Good morning");
         myMap.put(12, "Good afternoon");
+        myMap.put(20,"Good evening");
         myMap.put(24, "Good night");
             System.out.println(myMap.containsKey(789));
             System.out.println(myMap.get(12));
