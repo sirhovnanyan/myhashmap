@@ -1,11 +1,12 @@
 package hashmap;
 
-import java.util.Objects;
+import java.util.*;
 
 public class MyHashMap<K, V> implements MyMap<K, V> {
     private static final int DEFAULT_SIZE = 16;
     private int size = 0;
     private Entry<K, V>[] buckets;
+    private List<Entry<K, V>> entryList = new ArrayList<>();
 
     public MyHashMap() {
         buckets = new Entry[DEFAULT_SIZE];
@@ -100,6 +101,23 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     }
 
     @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public List<Entry<K, V>> entryList() {
+        int i = 0;
+        while (i < buckets.length) {
+            if (buckets[i] != null) {
+                entryList.add(buckets[i]);
+            }
+            i++;
+        }
+        return entryList;
+    }
+
+    @Override
     public boolean remove(K key) {
         int index = indexHash(key);
         Entry<K, V> prev = null;
@@ -135,7 +153,35 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         }
     }
 
-    private class Entry<K, V> {
+    @Override
+    public Iterator<K, V> iterator() {
+        return new MyIterator();
+    }
+
+    private class MyIterator<K, V> implements Iterator<Object, Object> {
+        private int cursor = 0;
+
+        public MyIterator() {
+            super();
+        }
+
+        @Override
+        public boolean hasNext() {
+            return cursor != size();
+        }
+
+        @Override
+        public MyEntry<Object, Object> next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            int i = cursor;
+            cursor += 1;
+            return entryList.get(i);
+        }
+    }
+
+    public class Entry<K, V> implements MyEntry {
         K key;
         V value;
         Entry<K, V> next;
